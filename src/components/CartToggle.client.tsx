@@ -4,7 +4,7 @@ import CartIconWithItems from './CartIconWithItems.client';
 /**
  * A client component that defines the behavior when a user toggles a cart
  */
-export default function CartToggle({handleClick}) {
+export default function CartToggle({handleClick}: {handleClick: () => void}) {
   const cartUI = useCartUI();
 
   if (cartUI == null) {

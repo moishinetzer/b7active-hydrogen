@@ -6,12 +6,27 @@ import React, {
   createContext,
 } from 'react';
 
-export const CartContext = createContext(null);
+export const CartContext = createContext<ProviderTypes>({
+  isCartOpen: false,
+  openCart: () => {},
+  closeCart: () => {},
+  toggleCart: () => {},
+});
 
 /**
  * A client component that defines the behavior that occurs when a user is interacting with a cart (for example, opening or closing it)
  */
-export default function CartUIProvider({children}) {
+type ProviderTypes = {
+  isCartOpen: boolean;
+  openCart: () => void;
+  closeCart: () => void;
+  toggleCart: () => void;
+};
+export default function CartUIProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const [open, setOpen] = useState(false);
 
   const openCart = useCallback(() => {

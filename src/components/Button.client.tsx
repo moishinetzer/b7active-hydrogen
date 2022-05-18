@@ -27,6 +27,14 @@ const ExternalIcon = () => (
 /**
  * A client component that sets the primary and secondary classes for button components
  */
+type PropTypes = {
+  className: string;
+  label: string;
+  handleClick: () => void;
+  url: string;
+  variant: 'primary' | 'secondary';
+  passthroughProps: {};
+};
 export default function Button({
   className,
   label,
@@ -34,7 +42,7 @@ export default function Button({
   url,
   variant = 'primary',
   passthroughProps,
-}) {
+}: PropTypes) {
   const classes = `${DEFAULT_CLASSES} ${VARIANT_CLASSES[variant]} ${className}`;
   const isExternal = url
     ? url.indexOf('://') > 0 || url.indexOf('//') === 0

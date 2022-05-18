@@ -23,7 +23,7 @@ function ExternalIcon() {
   );
 }
 
-function DocsButton({url, label}) {
+function DocsButton({url, label}: {url: string; label: string}) {
   return (
     <a
       href={url}
@@ -46,13 +46,13 @@ function BoxFallback() {
 function StorefrontInfo() {
   const {languageCode} = useShop();
 
-  const {data} = useShopQuery({
+  const {data} = useShopQuery<QueryReturnType>({
     query: QUERY,
     variables: {language: languageCode},
     preload: true,
   });
   const shopName = data ? data.shop.name : '';
-  const products = data && flattenConnection(data.products);
+  const products: Product[] = data && data.products ? data.products.edges : [];
   const collections = data && flattenConnection(data.collections);
   const totalProducts = products && products.length;
   const totalCollections = collections && collections.length;
@@ -99,7 +99,7 @@ function StorefrontInfo() {
 function TemplateLinks() {
   const {languageCode} = useShop();
 
-  const {data} = useShopQuery({
+  const {data} = useShopQuery<QueryReturnType>({
     query: QUERY,
     variables: {language: languageCode},
     preload: true,
@@ -204,3 +204,23 @@ const QUERY = gql`
     }
   }
 `;
+
+type QueryReturnType = {
+  shop: {
+    name: string;
+  };
+  products: {
+    edges: {
+      node: {
+        handle: string;
+      };
+    }[];
+  };
+  collections: {
+    edges: {
+      node: {
+        handle: string;
+      };
+    }[];
+  };
+};

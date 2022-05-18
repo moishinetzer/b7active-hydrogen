@@ -1,3 +1,5 @@
+import React from 'react';
+
 /**
  * A shared component that specifies the icon to represent a cart
  */

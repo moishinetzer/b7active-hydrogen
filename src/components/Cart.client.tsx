@@ -13,7 +13,6 @@ import {
   useCartLine,
 } from '@shopify/hydrogen/client';
 import {Dialog} from '@headlessui/react';
-
 import {useCartUI} from './CartUIProvider.client';
 import CartIconWithItems from './CartIconWithItems.client';
 import {BUTTON_PRIMARY_CLASSES} from './Button.client';
@@ -32,7 +31,7 @@ export default function Cart() {
         className={`z-20 fixed top-0 bottom-0 left-0 right-0 bg-black transition-opacity duration-400 ${
           isCartOpen ? 'opacity-20' : 'opacity-0 pointer-events-none'
         }`}
-        onClick={isCartOpen ? closeCart : null}
+        onClick={isCartOpen ? closeCart : undefined}
       />
       <Dialog open={isCartOpen} onClose={closeCart}>
         <Dialog.Overlay className="fixed z-20 inset-0 bg-gray-50 opacity-75" />
