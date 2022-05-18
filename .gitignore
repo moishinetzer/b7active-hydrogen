@@ -78,3 +78,4 @@ jspm_packages/
 
 # Vite output
 dist
+hydrogen.config.js
